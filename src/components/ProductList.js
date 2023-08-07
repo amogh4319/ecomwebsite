@@ -1,6 +1,6 @@
 import React from "react";
-import ProductItem from './ProductItem';
-import { Container,Row,Col } from "react-bootstrap";
+
+import { Container,Row,Col,Card,Button } from "react-bootstrap";
 const productsArr = [
 
     {
@@ -50,26 +50,69 @@ const ProductList=(props)=>{
     
     return (
         <>
-        <Container>
-            <Row xs={2} md={2} lg={4} className="mb-3 g-4">
-                
-            <ul>
-                {productsArr.map((item)=>(
-                    <Col  >
-                        <ProductItem
-                        key={item.id}
-                        id={item.id}
-                        title={item.title}
-                        price={item.price}
-                        imageUrl={item.imageUrl}
-                        />
-                        
-                    </Col>
-                ))}
-            </ul>
+        <Container  >
+      <Row xs={2} md={2} className='mb-3'>
+        <Col className="shadow fluid">
+        <Card>
+          <Card.Title style={{textAlign:'center'}}>Album 1</Card.Title>
+          <Card.Img src='https://prasadyash2411.github.io/ecom-website/img/Album%201.png' alt='card1'/>
+          <Card.Footer >
             
-            </Row>
-        </Container>
+              price:100
+              <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+              <Button >Add to Cart</Button>
+              </div>
+              
+            
+          </Card.Footer>
+        </Card>
+        </Col>
+        <Col className="shadow fluid">
+        <Card>
+          <Card.Title style={{textAlign:'center'}}>Album 2</Card.Title>
+          <Card.Img src='https://prasadyash2411.github.io/ecom-website/img/Album%202.png' alt='card1'/>
+          <Card.Footer>
+            
+          price:50
+              <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+              <Button >Add to Cart</Button>
+              </div>
+            
+          </Card.Footer>
+        </Card>
+        </Col>
+      </Row>
+      <Row xs={2} className='mb-3'>
+      <Col className="shadow fluid">
+        <Card>
+          <Card.Title style={{textAlign:'center'}}>Album 3</Card.Title>
+          <Card.Img src='https://prasadyash2411.github.io/ecom-website/img/Album%203.png' alt='card1'/>
+          <Card.Footer>
+            
+          price:70
+              <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+              <Button >Add to Cart</Button>
+              </div>
+        
+          </Card.Footer>
+        </Card>
+        </Col >
+        <Col className="shadow fluid">
+        <Card>
+          <Card.Title style={{textAlign:'center'}}>Album 4</Card.Title>
+          <Card.Img src='https://prasadyash2411.github.io/ecom-website/img/Album%204.png' alt='card1'/>
+          <Card.Footer>
+            
+          price:100
+              <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+              <Button >Add to Cart</Button>
+              </div>
+            
+          </Card.Footer>
+        </Card>
+        </Col>
+      </Row>
+    </Container>
         </>
 
     )
