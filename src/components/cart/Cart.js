@@ -1,75 +1,78 @@
-import React from "react";
-//import CartItem from './CartItem';
-import { Modal} from "react-bootstrap";
+// Cart.js
+import React, { useContext } from "react";
+import { Modal, Container, Row, Col, Button, Card } from "react-bootstrap";
+import ProductContext from "../../store/product-context";
 
-const cartElements = [
+const Cart = (props) => {
+  const ctx = useContext(ProductContext);
+  const cartItems = ctx.items;
 
-    {
-    
-    title: 'Colors',
-    
-    price: 100,
-    
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-    
-    quantity: 2,
-    
-    },
-    
-    {
-    
-    title: 'Black and white Colors',
-    
-    price: 50,
-    
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-    
-    quantity: 3,
-    
-    },
-    
-    {
-    
-    title: 'Yellow and Black Colors',
-    
-    price: 70,
-    
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-    
-    quantity: 1,
-    
-    }
-    
-    ]
-const Cart =(props)=>{
-    const items=cartElements.map((item)=>(
-        <CartItem
-        key={item.id}
-        id={item.id}
-        title={item.title}
-        price={item.price}
-        imageUrl={item.imageUrl}
-        quantity={item.quantity}
-        />
-    )
+  // Calculate the total price of items in the cart
+  const total = cartItems.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
 
-    )
-    
-    return (
-    <Modal>
-        <Modal.Header>
-        <Modal.Title>
-            helloGoodMorning!!!
-        </Modal.Title>
-        </Modal.Header>
+  const removeItemHandler = (itemId) => {
+    ctx.removeItem(itemId); // Implement this function in your product context to remove the item
+  };
+
+  return (
+    <Modal {...props} onHide={props.hideCartHandler} size="lg">
+        <Container>
+      <Modal.Dialog>
+      <Modal.Header>
+        <Modal.Title>Your Cart</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
         
-        <Modal.Body>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </Modal.Body>
+          
+            <Container>
+            <Row>
+            <Col xs={6} md={6}>
+              <h6>ITEM</h6>
+            </Col>
+            <Col xs={2} md={2}>
+              <h6>PRICE</h6>
+            </Col>
+            <Col xs={2} md={2}>
+              <h6>QUANTITY</h6>
+            </Col>
+          </Row>
+          {cartItems.map((item) => (
+            <Row key={item.title}>
+                <hr/>
+              <Col xs={6} md={6}>
+                <Card.Img src={item.imageUrl} alt={item.title} />
+                <Card.Title>{item.title}</Card.Title>
+              </Col>
+              
+              <Col xs={2} md={2}>
+                <p>{item.price}</p>
+              </Col>
+              <Col xs={2} md={2}>
+                <p>{item.quantity}</p>
+                <Button variant="danger" onClick={()=>removeItemHandler(item.id)}>Remove</Button>
+              </Col>
+            </Row>
+            
+            
+          ))}
+          <hr/>
+        </Container>
+          
+      </Modal.Body>
+      <p style={{ textAlign: "end" }}>
+        <b>Total: {total}</b>
+      </p>
+      <Modal.Footer>
+        <Button onClick={props.hideCartHandler}>
+            Close
+        </Button>
+      </Modal.Footer>
+      </Modal.Dialog>
+      </Container>
     </Modal>
-    )
-}
-
-        
-
-    
+  );
+};
 
 export default Cart;
