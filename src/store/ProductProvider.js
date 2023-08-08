@@ -24,9 +24,27 @@ const ProductProvider = (props) => {
        setItems((prevItems) => [...prevItems, item]);
      }
   };
-  const removeItemFromCart = (itemId) => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
-  };
+  const removeItemFromCart = (id) => {
+    const existingItemIndex = items.findIndex((existingItem) => existingItem.id === id);
+    if (existingItemIndex !== -1) {
+      const existingItem = items[existingItemIndex];
+      if (existingItem.quantity === 1) {
+        // If the item's quantity is 1, remove the item from the cart
+        const updatedItemsArray = items.filter((item) => item.id !== id);
+        setItems(updatedItemsArray);
+      } else {
+        // If the item's quantity is greater than 1, decrease its quantity by 1
+        const updatedItem = {
+          ...existingItem,
+          quantity: existingItem.quantity - 1,
+        };
+        const updatedItemsArray = [...items];
+        updatedItemsArray[existingItemIndex] = updatedItem;
+        setItems(updatedItemsArray);
+      }
+    }
+}
+  
   const productContext = {
     items,
     addItem: addItemToCart,

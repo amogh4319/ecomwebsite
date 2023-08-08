@@ -2,6 +2,7 @@
 import React, { useContext, useState } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import ProductContext from "../store/product-context";
+import Header from "./Header";
 
 const ProductList = (props) => {
   const [quantity, setQuantity] = useState(1);
@@ -16,7 +17,9 @@ const ProductList = (props) => {
   };
 
   return (
-    <Container>
+    <Container className="gredient-content-center">
+        <Header />
+        <h1 style={{textAlign:'center'}}><b>MUSIC</b></h1>
       <Row xs={2} md={2} className="mb-3">
         {props.products.map((product) => (
           <Col key={product.title}>

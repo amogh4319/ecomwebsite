@@ -2,47 +2,18 @@ import React, { useContext, useState } from "react";
 import {Navbar,Nav,Button} from 'react-bootstrap';
 import ProductContext from "../store/product-context";
 import Cart from "./cart/Cart";
-//import CartItem from './cart/CartItem';
+import AboutUs from "./AboutUs";
+//import ProductList from "./ProductList";
+import Products from "./Products";
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    Link
+} from 'react-router-dom'
+import ProductList from "./ProductList";
 
-// const cartElements = [
 
-//     {
-    
-//     title: 'Colors',
-    
-//     price: 100,
-    
-//     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-    
-//     quantity: 2,
-    
-//     },
-    
-//     {
-    
-//     title: 'Black and white Colors',
-    
-//     price: 50,
-    
-//     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-    
-//     quantity: 3,
-    
-//     },
-    
-//     {
-    
-//     title: 'Yellow and Black Colors',
-    
-//     price: 70,
-    
-//     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-    
-//     quantity: 1,
-    
-//     }
-    
-//     ]
 const Navigation =(props)=>{
     const [showCart,setShowCart]=useState(false);
     const ctx=useContext(ProductContext);
@@ -62,18 +33,18 @@ const Navigation =(props)=>{
     
     return (
         <>
-    
+    <Router>
          <Navbar  bg="dark">
-        <Navbar.Collapse className="justify-content-center">
+        <Navbar.Collapse>
           <Nav >
             <Nav.Item>
-            <Nav.Link href="#home" style={{color:'white'}}><b>HOME</b></Nav.Link>
+            <Nav.Link as={Link} to='/home' style={{color:'white'}}><b>HOME</b></Nav.Link>
             </Nav.Item>
             <Nav.Item>
-            <Nav.Link href="#store" style={{color:'white'}}><b>STORE</b></Nav.Link>
+            <Nav.Link as={Link} to='/store' style={{color:'white'}}><b>STORE</b></Nav.Link>
             </Nav.Item>
             <Nav.Item>
-            <Nav.Link href="#about" style={{color:'white'}}><b>ABOUT</b></Nav.Link>
+            <Nav.Link as={Link} to='/about' style={{color:'white'}}><b>ABOUT</b></Nav.Link>
             </Nav.Item>
             
             
@@ -89,8 +60,20 @@ const Navigation =(props)=>{
           
         </Navbar.Collapse>
       </Navbar>
-      
+      <div>
+        <Routes>
+            <Route path='/about' element={<AboutUs/>}>
+                
+            </Route>
+            
+            <Route path='/store' element={<ProductList products={Products} />}>
+                
+            </Route>
+        </Routes>
+      </div>
+      </Router>
       {showCart&&<Cart show={showCart} hideCartHandler={() => setShowCart(false)} />}
+      
         </>
     )
 }
