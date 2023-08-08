@@ -12,6 +12,7 @@ import {
     Link
 } from 'react-router-dom'
 import ProductList from "./ProductList";
+import HomePage from './HomePage';
 
 
 const Navigation =(props)=>{
@@ -63,6 +64,9 @@ const Navigation =(props)=>{
       <div>
         <Routes>
             <Route path='/about' element={<AboutUs/>}>
+                
+            </Route>
+            <Route path='/home' element={<HomePage />}>
                 
             </Route>
             
