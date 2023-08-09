@@ -13,6 +13,7 @@ import {
 } from 'react-router-dom'
 import ProductList from "./ProductList";
 import HomePage from './HomePage';
+import ContactUs from "./ContactUs";
 
 
 const Navigation =(props)=>{
@@ -47,6 +48,9 @@ const Navigation =(props)=>{
             <Nav.Item>
             <Nav.Link as={Link} to='/about' style={{color:'white'}}><b>ABOUT</b></Nav.Link>
             </Nav.Item>
+            <Nav.Item>
+            <Nav.Link as={Link} to='/contact' style={{color:'white'}}><b>CONTACT US</b></Nav.Link>
+            </Nav.Item>
             
             
           </Nav>
@@ -71,6 +75,9 @@ const Navigation =(props)=>{
             </Route>
             
             <Route path='/store' element={<ProductList products={Products} />}>
+                
+            </Route>
+            <Route path='/contact' element={<ContactUs />}>
                 
             </Route>
         </Routes>
