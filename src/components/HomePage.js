@@ -13,19 +13,20 @@ export default class HomePage extends Component {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center', // Center horizontally
-            justifyContent: 'center', // Center vertically
+            justifyContent: 'center', 
+            // Center vertically
           }}
       >
         <h1 style={{fontFamily:'cursive'}}>HOME</h1>
         
-            <Card >
+            
                 <Card.Body>
-                    Get our latest Album
+                    <Card className='mt-5'><b>Get our latest Album</b></Card>
                     <CardImg src={playImage} alt="play"/>
                 </Card.Body>
            
 
-            </Card>
+            
 
         <h2 style={{fontFamily:'revert-layer'}}>TOURS</h2>
         

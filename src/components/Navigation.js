@@ -2,18 +2,21 @@ import React, { useContext, useState } from "react";
 import {Navbar,Nav,Button} from 'react-bootstrap';
 import ProductContext from "../store/product-context";
 import Cart from "./cart/Cart";
-import AboutUs from "./AboutUs";
-//import ProductList from "./ProductList";
-import Products from "./Products";
-import {
-    BrowserRouter as Router,
-    Route,
-    Routes,
-    Link
-} from 'react-router-dom'
-import ProductList from "./ProductList";
-import HomePage from './HomePage';
-import ContactUs from "./ContactUs";
+import {Link} from 'react-router-dom'
+// import AboutUs from "./AboutUs";
+// //import ProductList from "./ProductList";
+// import Products from "./Products";
+// import {
+  
+//     BrowserRouter as Router,
+//     Route,
+//     Routes,
+//     Link,
+
+// } from 'react-router-dom'
+// import ProductList from "./ProductList";
+// import HomePage from './HomePage';
+// import ContactUs from "./ContactUs";
 
 
 const Navigation =(props)=>{
@@ -35,7 +38,7 @@ const Navigation =(props)=>{
     
     return (
         <>
-    <Router>
+    
          <Navbar  bg="dark">
         <Navbar.Collapse>
           <Nav >
@@ -65,24 +68,8 @@ const Navigation =(props)=>{
           
         </Navbar.Collapse>
       </Navbar>
-      <div>
-        <Routes>
-            <Route path='/about' element={<AboutUs/>}>
-                
-            </Route>
-            <Route path='/home' element={<HomePage />}>
-                
-            </Route>
-            
-            <Route path='/store' element={<ProductList products={Products} />}>
-                
-            </Route>
-            <Route path='/contact' element={<ContactUs />}>
-                
-            </Route>
-        </Routes>
-      </div>
-      </Router>
+      
+        
       {showCart&&<Cart show={showCart} hideCartHandler={() => setShowCart(false)} />}
       
         </>

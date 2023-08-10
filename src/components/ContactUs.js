@@ -20,7 +20,7 @@ function ContactUs() {
      <Card border="primary" style={{width:'20rem',marginLeft:'25%'}} className='shadow fluid'>
         
         <Card.Body>
-          <Card.Title>Contact us</Card.Title>
+          <Card.Title style={{fontFamily:'cursive',color:'blue'}}>Contact us</Card.Title>
           <Card.Text>
           Need to get in touch with us? Either fill out the form and get your inquiry cleared or find the department email you'd like to contact below.
           </Card.Text>
