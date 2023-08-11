@@ -42,7 +42,7 @@ const Cart = (props) => {
             <Row key={item.title}>
                 <hr/>
               <Col xs={6} md={6}>
-                <Card.Img src={item.imageUrl} alt={item.title} />
+                <Card.Img src={item.imageUrl} alt={item.title} style={{height:'100px',width:'100px'}} />
                 <Card.Title>{item.title}</Card.Title>
               </Col>
               

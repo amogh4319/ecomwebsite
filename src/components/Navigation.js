@@ -54,6 +54,9 @@ const Navigation =(props)=>{
             <Nav.Item>
             <Nav.Link as={Link} to='/contact' style={{color:'white'}}><b>CONTACT US</b></Nav.Link>
             </Nav.Item>
+            <Nav.Item>
+            <Nav.Link as={Link} to='/' style={{color:'white'}}><b>LOG IN</b></Nav.Link>
+            </Nav.Item>
             
             
           </Nav>

@@ -11,6 +11,7 @@ import {Route,Routes} from 'react-router-dom'
 import ProductList from "./components/ProductList";
 import Products from "./components/Products";
 import ProductPage from "./components/ProductPage";
+import Login from "./components/Login";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <header><Navigation /></header>
         <main>
           <Routes>
+          <Route path='/' element={<Login/>}></Route>
           <Route path='/home' element={<HomePage/>}></Route>
           <Route path='/store' element={<ProductList products={Products}/>}></Route>
           <Route path='/about' element={<AboutUs/>}></Route>
