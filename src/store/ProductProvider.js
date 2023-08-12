@@ -1,54 +1,49 @@
 // ProductProvider.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductContext from "./product-context";
 
+const loadFromLocalStorage=JSON.parse(localStorage.getItem('cartItems')||'[]')
+
 const ProductProvider = (props) => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(loadFromLocalStorage);
+
+  // Load cart items from local storage on component mount
+  
+
+  // Save cart items to local storage whenever they change
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(items));
+  }, [items]);
 
   const addItemToCart = (item) => {
-     // Check if the item already exists in the cart
-     const existingItemIndex = items.findIndex((existingItem) => existingItem.id === item.id);
+    // Check if the item already exists in the cart
+    const existingItemIndex = items.findIndex((existingItem) => existingItem.id === item.id);
 
-     if (existingItemIndex !== -1) {
-       // Item already exists, update its quantity
-       const updatedItem = {
-         ...items[existingItemIndex],
-         quantity: items[existingItemIndex].quantity + item.quantity,
-       };
- 
-       const updatedItemArray = [...items];
-       updatedItemArray[existingItemIndex] = updatedItem;
-       setItems(updatedItemArray);
-     } else {
-       // Item doesn't exist, add it to the cart
-       setItems((prevItems) => [...prevItems, item]);
-     }
-  };
-  const removeItemFromCart = (id) => {
-    const existingItemIndex = items.findIndex((existingItem) => existingItem.id === id);
     if (existingItemIndex !== -1) {
-      const existingItem = items[existingItemIndex];
-      if (existingItem.quantity === 1) {
-        // If the item's quantity is 1, remove the item from the cart
-        const updatedItemsArray = items.filter((item) => item.id !== id);
-        setItems(updatedItemsArray);
-      } else {
-        // If the item's quantity is greater than 1, decrease its quantity by 1
-        const updatedItem = {
-          ...existingItem,
-          quantity: existingItem.quantity - 1,
-        };
-        const updatedItemsArray = [...items];
-        updatedItemsArray[existingItemIndex] = updatedItem;
-        setItems(updatedItemsArray);
-      }
+      // Item already exists, update its quantity
+      const updatedItem = {
+        ...items[existingItemIndex],
+        quantity: items[existingItemIndex].quantity + item.quantity,
+      };
+
+      const updatedItemArray = [...items];
+      updatedItemArray[existingItemIndex] = updatedItem;
+      setItems(updatedItemArray);
+    } else {
+      // Item doesn't exist, add it to the cart
+      setItems((prevItems) => [...prevItems, item]);
     }
-}
-  
+  };
+
+  const removeItemFromCart = (id) => {
+    const updatedItemsArray = items.filter((item) => item.id !== id);
+    setItems(updatedItemsArray);
+  };
+
   const productContext = {
     items,
     addItem: addItemToCart,
-    removeItem:removeItemFromCart
+    removeItem: removeItemFromCart
   };
 
   return (

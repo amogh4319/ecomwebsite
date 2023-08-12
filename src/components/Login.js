@@ -36,7 +36,7 @@ const sumbmitHandler=(event)=>{
             return res.json();
         }
     }).then(data=>{
-        ctx.logIn(data.idToken);
+        ctx.logIn(data.idToken,email);
             
         history('/store');
     }).catch(err=>{
